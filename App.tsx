@@ -1,12 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import InitScreen from '@screens/InitScreen';
+import { formidableStore } from '@app/appState/stores';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={formidableStore}>
+      <InitScreen />
+    </Provider>
   );
 }
 
