@@ -26,9 +26,11 @@ export const getAlbumList = (jukeDispatchAlbums: React.Dispatch<iGetAlbums>): vo
     const albumsRef = ref(db, 'ALBUMS');
     onValue(albumsRef, (snap) => {
         const fetchedAlbums = snap.val().map((album: iAlbum) => {
-            // console.log('album: ', Object.keys(album));
             return {
-                title: album.Title
+                title: album.Title,
+                artist: album.Artist,
+                year: album.Year,
+                songs: album.Songs
             };
         });
         jukeDispatchAlbums({
