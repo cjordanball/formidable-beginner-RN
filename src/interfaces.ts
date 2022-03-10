@@ -5,8 +5,7 @@ export interface iAlbum {
     Cover: string,
     Title: string,
     Year: number,
-    Artist: string,
-    Songs: Array<iSong>
+    Artist: string
 }
 export interface iSong {
     title: string,
