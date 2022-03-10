@@ -1,4 +1,4 @@
-import { iAlbum, jukeState } from '@app/interfaces';
+import { iAlbum, iSong, jukeState } from '@app/interfaces';
 import { AlbumActions } from '@app/appState/actions';
 
 const initState: jukeState = {
@@ -9,6 +9,7 @@ const initState: jukeState = {
 	songLength: 0,
 	musicStyles: [],
 	selectedStyles: [],
+    albumSongs: []
 } ;
 
 
@@ -20,6 +21,13 @@ const jukeReducer = (state: jukeState = initState, action: AlbumActions): jukeSt
             return {
                 ...state,
                 albums: AlbumArray
+            }
+        case 'IMPORT_SONGS':
+            const SongArray: Array<iSong> = [];
+            SongArray.push(...action.payload);
+            return {
+                ...state,
+                albumSongs: SongArray
             }
         default:
             return state;

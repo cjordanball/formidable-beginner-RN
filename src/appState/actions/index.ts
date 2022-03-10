@@ -1,8 +1,13 @@
-import { iAlbum } from "@app/appState/actions";
+import { iAlbum } from "@app/interfaces";
 
 export interface iGetAlbums {
     readonly type: 'IMPORT_ALBUMS';
     payload: string;
 }
 
-export type AlbumActions = iGetAlbums;
+export interface iGetSongs {
+    readonly type: 'IMPORT_SONGS';
+    payload: 
+}
+
+export type AlbumActions = iGetAlbums | iGetSongs;
