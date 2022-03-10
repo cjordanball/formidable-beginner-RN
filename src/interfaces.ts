@@ -5,7 +5,12 @@ export interface iAlbum {
     Cover: string,
     Title: string,
     Year: number,
-    Artist: string
+    Artist: string,
+    Songs: Array<iSong>
+}
+export interface iSong {
+    title: string,
+    url: string
 }
 
 interface iJukeState {
