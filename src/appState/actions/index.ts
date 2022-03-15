@@ -7,7 +7,7 @@ export interface iGetAlbums {
 
 export interface iGetSongs {
     readonly type: 'IMPORT_SONGS';
-    payload: 
+    payload: string;
 }
 
 export type AlbumActions = iGetAlbums | iGetSongs;

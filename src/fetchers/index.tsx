@@ -1,8 +1,8 @@
+import React from 'react';
 import { getDatabase, ref, onValue, child, get } from 'firebase/database';
 import app from './firebase';
-import { iAlbum } from '../interfaces';
+import { iAlbum, iFetchedAlbum } from '../interfaces';
 import { iGetAlbums, iGetSongs } from '@app/appState/actions';
-import React from 'react';
 
 
 export const getAlbumList = (jukeDispatchAlbums: React.Dispatch<iGetAlbums>): void => {
@@ -10,7 +10,7 @@ export const getAlbumList = (jukeDispatchAlbums: React.Dispatch<iGetAlbums>): vo
     const dbRef = ref(getDatabase(app));
     get(child(dbRef, 'ALBUMS')).then((snap) => {
         if (snap.exists()) {
-            const fetchedAlbums = snap.val().map((album: iAlbum) => {
+            const fetchedAlbums: Array<iFetchedAlbum> = snap.val().map((album: iAlbum): iFetchedAlbum => {
                 return {
                     title: album.Title,
                     artist: album.Artist,
@@ -29,7 +29,7 @@ export const getAlbumList = (jukeDispatchAlbums: React.Dispatch<iGetAlbums>): vo
     });
 }
 
-export const getSongList = (jukeDispatchSongs: React.Dispatch<iGetSongs>, parentAlbum): void => {
+export const getSongList = (jukeDispatchSongs: React.Dispatch<iGetSongs>, parentAlbum: iFetchedAlbum): void => {
     const dbRef = ref(getDatabase(app));
     get(child(dbRef, 'ALBUMS')).then((snap) => {
         if (snap.exists()) {
@@ -40,12 +40,10 @@ export const getSongList = (jukeDispatchSongs: React.Dispatch<iGetSongs>, parent
                 type: 'IMPORT_SONGS',
                 payload: selectedAlbum.Songs ? selectedAlbum.Songs : null
             });
-            console.log('dispatched songs');
         } else {
             console.log("No Data");
         }
     }).catch((err) => {
         console.log('ERR: ', err);
     })
-    console.log('getSongList for ', parentAlbum.title);
 };
