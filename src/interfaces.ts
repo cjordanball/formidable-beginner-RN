@@ -7,8 +7,19 @@ export interface iAlbum {
     Year: number,
     Artist: string
 }
+
+export interface iFetchedAlbum {
+    title: string,
+    artist: string,
+    cover: string
+}
 export interface iSong {
     title: string,
+    url: string
+}
+
+export interface iFetchedSong {
+    Title: string,
     url: string
 }
 

@@ -1,25 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, useWindowDimensions } from 'react-native';
+import Styles from '@app/styling';
 
 const Header: React.FC = () => {
+    const { height: screenHeight, width: screenWidth } = useWindowDimensions();
     return (
-    <View style={styles.container}>
-        <Text style={styles.headline}>The Formidable Beginner</Text>
+    <View style={[Styles.Header.container, {width: screenWidth}]}>
+        <Text style={Styles.Header.headline}>The Formidable Beginner</Text>
     </View>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: 'pink',
-        width: '100%',
-        height: 100,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    headline: {
-        fontSize: 24
-    }
-});
 
 export default Header;
